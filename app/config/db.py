@@ -15,10 +15,10 @@ SQLITE  = {
 POSTGRESQL = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': '',
-            'USER': '',
-            'PASSWORD': '', 
-            'HOST': '',
-            'PORT': '5432',
+            'NAME': 'railway',
+            'USER': 'postgres',
+            'PASSWORD': 'WMNIsAHyTSiahGqmvIGKkwpMpxDhhVPD', 
+            'HOST': 'monorail.proxy.rlwy.net',
+            'PORT': '38516',
         }
 }
