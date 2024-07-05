@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     
     #aplicaciones locales
     'app.core.base',
+    'app.core.common',
     'app.core.usuarios',
 ]
 
@@ -135,4 +136,4 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CSRF_TRUSTED_ORIGINS = ['http://*','https://web-production-5b9e.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['http://*','https://web-production-5b9e.up.railway.app','localhost']
