@@ -150,6 +150,8 @@ CORS_ORIGIN_WHITELIST = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
     'web-production-5b9e.up.railway.app',
+    "http://web-production-5b9e.up.railway.app",
+    "http://web-production-5b9e.up.railway.app",
     'localhost',
     '127.0.0.1',
     ]
