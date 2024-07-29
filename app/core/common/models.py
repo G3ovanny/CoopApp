@@ -9,8 +9,8 @@ class EntidadAdministrativa(BaseModel):
     historical = HistoricalRecords()
 
     class Meta:
-        verbose_name = 'entidad_administrativa'
-        verbose_name_plural = 'entidades_administrativas'
+        verbose_name = 'Entidad administrativa'
+        verbose_name_plural = 'Entidades administrativas'
         db_table = 'Entidad_Administrativas'
         ordering = ['id','descripcion']
 

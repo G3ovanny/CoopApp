@@ -1,7 +1,7 @@
 
 import os
 
-from app.config.db import POSTGRESQL
+from app.config.db import POSTGRESQL, SQLITE
 
 from pathlib import Path
 
@@ -18,8 +18,8 @@ SECRET_KEY = 'django-insecure-za%nowr5#0h&*b!$koln(9@^8l2-*^4&oi2wi87861v#m%_@oz
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost','web-production-5b9e.up.railway.app']
-
+ALLOWED_HOSTS = ['*']
+#'localhost:3000','web-production-5b9e.up.railway.app','localhost:8000'
 
 # Application definition
 
@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'app.core.base',
     'app.core.common',
     'app.core.usuarios',
+    'app.core.creditos',
 ]
 
 REST_FRAMEWORK = {
@@ -53,6 +54,7 @@ REST_FRAMEWORK = {
 }
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
@@ -136,4 +138,16 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CSRF_TRUSTED_ORIGINS = ['http://*','https://web-production-5b9e.up.railway.app','localhost']
+# CSRF_TRUSTED_ORIGINS = ['http://*','https://web-production-5b9e.up.railway.app','localhost']
+
+
+
+CORS_ORIGIN_ALLOW_ALL = True
+
+
+# CORRIGE EL ERROR DE CORS
+CORS_ORIGIN_WHITELIST = [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+]
+

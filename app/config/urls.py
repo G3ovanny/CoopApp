@@ -36,5 +36,6 @@ urlpatterns = [
     path('loging/', Login.as_view(), name='login'),   
     path('logout/', Logout.as_view(), name='logout'),
     path('reset_pass/', ResetPass.as_view(), name='reset_password' ),
+    path('creditos/', include('app.core.creditos.api.routers')),
     path('usuarios/', include('app.core.usuarios.api.routers')),
 ]
