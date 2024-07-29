@@ -168,5 +168,5 @@ CORS_ORIGIN_WHITELIST = [
     '127.0.0.1:8000',
     ]
 
-CSRF_TRUSTED_ORIGINS = ["http://web-production-5b9e.up.railway.app",]
+CSRF_TRUSTED_ORIGINS = ["https://web-production-5b9e.up.railway.app",]
 
