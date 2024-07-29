@@ -18,7 +18,17 @@ SECRET_KEY = 'django-insecure-za%nowr5#0h&*b!$koln(9@^8l2-*^4&oi2wi87861v#m%_@oz
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = [    
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+    'web-production-5b9e.up.railway.app',
+    "https://web-production-5b9e.up.railway.app",
+    "http://web-production-5b9e.up.railway.app",
+    'localhost',
+    '127.0.0.1',
+    'localhost:8000',
+    '127.0.0.1:8000',
+    ]
 #'localhost:3000','web-production-5b9e.up.railway.app','localhost:8000'
 
 # Application definition
@@ -150,9 +160,11 @@ CORS_ORIGIN_WHITELIST = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
     'web-production-5b9e.up.railway.app',
-    "http://web-production-5b9e.up.railway.app",
+    "https://web-production-5b9e.up.railway.app",
     "http://web-production-5b9e.up.railway.app",
     'localhost',
     '127.0.0.1',
+    'localhost:8000',
+    '127.0.0.1:8000',
     ]
 
