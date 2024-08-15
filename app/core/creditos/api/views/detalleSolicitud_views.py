@@ -11,7 +11,7 @@ class DetalleSolicitudViewSet(viewsets.ModelViewSet):
         return self.get_serializer().Meta.model.objects.filter(id=pk, state = True).first()
     
     def create(self, request):
-        detallesolicitud_serializer= self.get_serializer_class(data=request.data)
+        detallesolicitud_serializer= self.serializer_class(data=request.data)
         if detallesolicitud_serializer.is_valid():
             detallesolicitud_serializer.save()
             return Response({'message','La solicitud se a creado correctamente'}, status=status.HTTP_201_CREATED)
@@ -19,7 +19,7 @@ class DetalleSolicitudViewSet(viewsets.ModelViewSet):
     
     def update(self, request, pk=None):
         if self.get_queryset(pk):
-            detallesolicitud_serializer= self.get_serializer_class(self.get_queryset(pk), data = request.data)
+            detallesolicitud_serializer= self.serializer_class(self.get_queryset(pk), data = request.data)
             if detallesolicitud_serializer.is_valid():
                 # detallesolicitud_serializer.save()
                 detallesolicitud_serializer.update(self.get_queryset(pk), detallesolicitud_serializer.validated_data)

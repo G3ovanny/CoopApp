@@ -50,7 +50,6 @@ class Login(TokenObtainPairView):
         return Response({'error': 'Usuario o contraseña incorrectos'}, status=status.HTTP_400_BAD_REQUEST)
 
 class Logout(GenericAPIView):
-
     def post(self, request, *args, **kwargs):
         usuario = Usuario.objects.filter(id = request.data.get('usuario', 0))
         if usuario.exists():

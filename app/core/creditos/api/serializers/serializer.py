@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from app.core.creditos.models import FormaPago, TipoGarantia, TipoSolicitud, TipoSegmentacion, Solicitud, DetalleSolicitud
+from app.core.creditos.models import FormaPago, TipoGarantia, TipoSolicitud, TipoSegmentacion, SolicitudCredito, DetalleSolicitud
 
 class FormaPagoSerializer(serializers.ModelSerializer):
     class Meta:
@@ -23,7 +23,7 @@ class TipoSegmentacionSerializer(serializers.ModelSerializer):
 
 class SolicitudSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Solicitud
+        model = SolicitudCredito
         fields = '__all__'
 
 class DetalleSolicitudSerializer(serializers.ModelSerializer):

@@ -2,6 +2,7 @@ from django.db import models
 from app.core.base.models import BaseModel
 from simple_history.models import HistoricalRecords
 from app.core.common.models import *
+from app.core.institucion.models import Oficina
 # Create your models here.
 
 class FormaPago(BaseModel):
@@ -30,7 +31,7 @@ class TipoGarantia(BaseModel):
     class Meta:
         verbose_name = 'Tipo de garantia'
         verbose_name_plural = 'Tipos de garantia'
-        db_table = 'Tipo_Garantia'
+        db_table = 'Tipos_Garantia'
         ordering = ['id']
 
     def __str__(self):
@@ -48,7 +49,7 @@ class TipoSolicitud(BaseModel):
     class Meta:
         verbose_name = 'Tipo de solicitud'
         verbose_name_plural = 'Tipos de solicitud'
-        db_table = 'Tipo_Solicitud'
+        db_table = 'Tipos_Solicitud'
         ordering = ['id']
 
     def __str__(self):
@@ -66,7 +67,7 @@ class TipoSegmentacion(BaseModel):
     class Meta:
         verbose_name = 'Tipo de segmentacion'
         verbose_name_plural = 'Tipos de segmentacion'
-        db_table = 'Tipo_Segmentacion'
+        db_table = 'Tipos_Segmentacion'
         ordering = ['id']
 
     def __str__(self):
@@ -77,15 +78,33 @@ class TipoSegmentacion(BaseModel):
         self.state = False
         self.save()
 
-class Solicitud(BaseModel):
+class EstaadoCredito(BaseModel):
+    descripcion = models.CharField('Descripcion', max_length=255, unique=True)
+    historical = HistoricalRecords()
+
+    class Meta:
+        verbose_name = 'Estado Credito'
+        verbose_name_plural = 'Estados credito'
+        db_table = 'Estados_Credito'
+        ordering = ['id']
+
+    def __str__(self):
+        return f'{self.descripcion}'
+    
+
+    def desactivar(self):
+        self.state = False
+        self.save()
+
+class SolicitudCredito(BaseModel):
     forma_pago = models.ForeignKey(FormaPago, on_delete=models.CASCADE, null=True, blank=True, related_name='FormaPago')
     tipo_garantia = models.ForeignKey(TipoGarantia, on_delete=models.CASCADE, null=True, blank=True, related_name='TipoGarantia')
     tipo_solicitud = models.ForeignKey(TipoSolicitud, on_delete=models.CASCADE, null=True, blank=True, related_name='TipoSolicitud')
     tipo_segmentacion = models.ForeignKey(TipoSegmentacion, on_delete=models.CASCADE, null=True, blank=True, related_name='TipoSegmentacion')
-    lugar_solicitud = models.ForeignKey(EntidadAdministrativa, on_delete=models.CASCADE)
+    lugar_solicitud = models.ForeignKey(Oficina, on_delete=models.CASCADE)
     fecha_solicitud  = models.DateField('Fecha de solicitud', auto_now=False, auto_now_add=False)
-    taza_interes = models.DecimalField('Taza de interes', max_digits=5, decimal_places=2)
-    monto = models.DecimalField('Monto', max_digits=5, decimal_places=2)
+    tasa_interes = models.DecimalField('Tasa de interes', max_digits=5, decimal_places=2)
+    monto = models.DecimalField('Monto', max_digits=10, decimal_places=2)
     plazo = models.IntegerField('Plazo')
     cuota = models.CharField('Cuota',null=True, blank=True, max_length=50)
     destino_credito = models.CharField('Destino del credito', null=True, blank=True, max_length=50)
@@ -94,7 +113,7 @@ class Solicitud(BaseModel):
     class Meta:
         verbose_name = 'Solicitud'
         verbose_name_plural = 'Solicitudes'
-        db_table = 'Solicitudes'
+        db_table = 'Solicitudes_Creditos'
         ordering = ['id']
 
     def __str__(self):
@@ -106,7 +125,7 @@ class Solicitud(BaseModel):
         self.save()
         
 class DetalleSolicitud(BaseModel):
-    solicitud = models.ForeignKey(Solicitud, on_delete=models.CASCADE, null=True, blank=True, related_name='Solicitud')
+    solicitud = models.ForeignKey(SolicitudCredito, on_delete=models.CASCADE, null=True, blank=True, related_name='Solicitud')
     historical = HistoricalRecords()
 
     class Meta:
@@ -122,3 +141,5 @@ class DetalleSolicitud(BaseModel):
     def desactivar(self):
         self.state = False
         self.save()
+
+

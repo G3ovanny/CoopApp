@@ -11,7 +11,7 @@ class TipoSegmentacionViewSet(viewsets.ModelViewSet):
         return self.get_serializer().Meta.model.objects.filter(id=pk, state = True).first()
     
     def create(self, request):
-        segmentacion_serializer= self.get_serializer_class(data=request.data)
+        segmentacion_serializer= self.serializer_class(data=request.data)
         if segmentacion_serializer.is_valid():
             segmentacion_serializer.save()
             return Response({'message','El tipo de segmentación se a creado correctamente'}, status=status.HTTP_201_CREATED)
@@ -19,7 +19,7 @@ class TipoSegmentacionViewSet(viewsets.ModelViewSet):
     
     def update(self, request, pk=None):
         if self.get_queryset(pk):
-            segmentacion_serializer= self.get_serializer_class(self.get_queryset(pk), data = request.data)
+            segmentacion_serializer= self.serializer_class(self.get_queryset(pk), data = request.data)
             if segmentacion_serializer.is_valid():
                 # segmentacion_serializer.save()
                 segmentacion_serializer.update(self.get_queryset(pk), segmentacion_serializer.validated_data)

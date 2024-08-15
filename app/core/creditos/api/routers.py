@@ -10,7 +10,7 @@ router = DefaultRouter()
 router.register(r'formas-pagos', FormaPagoViewSet, basename='forma_pago')
 router.register(r'tipos-garantia', TipoGarantiaViewSet, basename='tipos_garantia')
 router.register(r'tipos-solicitud', TipoSolicitudViewSet, basename='tipos_solicitud')
-router.register(r'tipo-segmentacion', TipoSegmentacionViewSet, basename='tipo_segmentacion')
+router.register(r'tipos-segmentacion', TipoSegmentacionViewSet, basename='tipos_segmentacion')
 router.register(r'solicitud', SolicitudViewSet, basename='solicitud')
 router.register(r'detalle-solicitud', DetalleSolicitudViewSet, basename='detalle_solicitud')
 

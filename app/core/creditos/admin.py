@@ -22,6 +22,6 @@ class TipoSegmentacion_Admin(admin.ModelAdmin):
 class DetalleSolicitud_Admin(admin.ModelAdmin):
     list_display = ('id',)
 
-@admin.register(Solicitud)
+@admin.register(SolicitudCredito)
 class Solicitud_Admin(admin.ModelAdmin):
     list_display = ('id',)

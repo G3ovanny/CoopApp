@@ -11,7 +11,7 @@ class TipoGarantiaViewSet(viewsets.ModelViewSet):
         return self.get_serializer().Meta.model.objects.filter(id=pk, state = True).first()
     
     def create(self, request):
-        garantia_serializer= self.get_serializer_class(data=request.data)
+        garantia_serializer= self.serializer_class(data=request.data)
         if garantia_serializer.is_valid():
             garantia_serializer.save()
             return Response({'message','El tipo de garantia se a creado correctamente'}, status=status.HTTP_201_CREATED)
@@ -19,7 +19,7 @@ class TipoGarantiaViewSet(viewsets.ModelViewSet):
     
     def update(self, request, pk=None):
         if self.get_queryset(pk):
-            garantia_serializer= self.get_serializer_class(self.get_queryset(pk), data = request.data)
+            garantia_serializer= self.serializer_class(self.get_queryset(pk), data = request.data)
             if garantia_serializer.is_valid():
                 # garantia_serializer.save()
                 garantia_serializer.update(self.get_queryset(pk), garantia_serializer.validated_data)
